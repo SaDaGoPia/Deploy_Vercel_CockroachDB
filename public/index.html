@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexión a CockroachDB</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="Main">
+        <h1 id="Titulo" >Bienvenido a la conexión con CockroachDB</h1>
+        <h2 id="InfoTitulo">Información de la Conexión:</h2>
+        <div id="connInfo">
+            <p><strong>Nombre de la BD:</strong> <span id="DBname">Cargando...</span></p>
+            <p><strong>Usuario:</strong> <span id="UserName">Cargando...</span></p>
+        </div>
+        <div id="crudPanel">
+            <button onclick="crearRegistro()">Crear</button>
+            <button onclick="leerRegistros()">Leer</button>
+            <button onclick="actualizarRegistro()">Actualizar</button>
+            <button onclick="eliminarRegistro()">Eliminar</button>
+        </div>
+        <pre id="output"></pre>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>
