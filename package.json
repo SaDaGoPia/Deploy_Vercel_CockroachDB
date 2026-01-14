@@ -1,30 +1,38 @@
 {
+  "name": "crud-neonsql-app",
+  "version": "2.0.0",
+  "description": "CRUD app refactorizado con NeonSQL (PostgreSQL). Migración desde CockroachDB con arquitectura modular.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "init-db": "node db.js"
+  },
   "dependencies": {
-    "child-process": "latest",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "pg": "^8.13.3",
     "pg-connection-string": "latest",
-    "prompt": "latest",
     "uuid": "^11.1.0"
   },
-  "name": "example-app-node-postgres---copy",
-  "version": "1.0.0",
-  "description": "This repo contains a simple Node.js CRUD app that uses the [node-postgres](https://node-postgres.com/) driver to talk to a local CockroachDB cluster.",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+  "engines": {
+    "node": ">=18.0.0"
   },
+  "type": "commonjs",
+  "license": "ISC",
+  "keywords": [
+    "crud",
+    "neonsql",
+    "postgresql",
+    "express",
+    "vercel"
+  ],
+  "author": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cockroachlabs/example-app-node-postgres.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/cockroachlabs/example-app-node-postgres/issues"
   },

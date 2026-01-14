@@ -3,25 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexión a CockroachDB</title>
+    <title>CRUD NeonSQL - Panel de Administración</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div id="Main">
-        <h1 id="Titulo" >Bienvenido a la conexión con CockroachDB</h1>
-        <h2 id="InfoTitulo">Información de la Conexión:</h2>
-        <div id="connInfo">
-            <p><strong>Nombre de la BD:</strong> <span id="DBname">Cargando...</span></p>
-            <p><strong>Usuario:</strong> <span id="UserName">Cargando...</span></p>
-        </div>
-        <div id="crudPanel">
-            <button onclick="crearRegistro()">Crear</button>
-            <button onclick="leerRegistros()">Leer</button>
-            <button onclick="actualizarRegistro()">Actualizar</button>
-            <button onclick="eliminarRegistro()">Eliminar</button>
-        </div>
-        <pre id="output"></pre>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>💾 CRUD Manager - NeonSQL</h1>
+            <p class="subtitle">Gestión de cuentas con PostgreSQL</p>
+        </header>
+
+        <!-- Info de Conexión -->
+        <section class="info-section">
+            <h2>📊 Información de Conexión</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="label">Base de datos:</span>
+                    <span id="DBname" class="value loading">Cargando...</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Usuario:</span>
+                    <span id="UserName" class="value loading">Cargando...</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Motor SQL:</span>
+                    <span class="value">NeonSQL (PostgreSQL)</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Estado:</span>
+                    <span id="status" class="value loading">Conectando...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CRUD Panel -->
+        <section class="crud-section">
+            <h2>⚙️ Panel de Operaciones CRUD</h2>
+            
+            <!-- Crear -->
+            <div class="operation-card">
+                <h3>➕ Crear Cuenta</h3>
+                <div class="form-group">
+                    <input type="text" id="createId" placeholder="ID (UUID) - opcional, se genera automáticamente" class="input-field">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="createBalance" placeholder="Balance inicial" class="input-field">
+                </div>
+                <button onclick="crearRegistro()" class="btn btn-primary">Crear Cuenta</button>
+            </div>
+
+            <!-- Leer/Buscar -->
+            <div class="operation-card">
+                <h3>🔍 Buscar Cuentas</h3>
+                <div class="form-group">
+                    <input type="text" id="searchId" placeholder="ID de la cuenta (opcional)" class="input-field">
+                </div>
+                <button onclick="leerRegistros()" class="btn btn-info">Obtener Todas las Cuentas</button>
+                <button onclick="buscarPorId()" class="btn btn-info">Buscar por ID</button>
+            </div>
+
+            <!-- Actualizar -->
+            <div class="operation-card">
+                <h3>✏️ Actualizar Cuenta</h3>
+                <div class="form-group">
+                    <input type="text" id="updateId" placeholder="ID de la cuenta" class="input-field">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="updateBalance" placeholder="Nuevo balance" class="input-field">
+                </div>
+                <button onclick="actualizarRegistro()" class="btn btn-warning">Actualizar</button>
+            </div>
+
+            <!-- Eliminar -->
+            <div class="operation-card">
+                <h3>🗑️ Eliminar Cuenta</h3>
+                <div class="form-group">
+                    <input type="text" id="deleteId" placeholder="ID de la cuenta" class="input-field">
+                </div>
+                <button onclick="eliminarRegistro()" class="btn btn-danger">Eliminar</button>
+            </div>
+        </section>
+
+        <!-- Resultado -->
+        <section class="result-section">
+            <h2>📝 Resultado</h2>
+            <pre id="output" class="output-box"></pre>
+        </section>
+
+        <!-- Toast Notifications -->
+        <div id="toast" class="toast"></div>
     </div>
+
     <script src="script.js" defer></script>
 </body>
 </html>
