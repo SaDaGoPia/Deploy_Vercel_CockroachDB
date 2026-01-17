@@ -7,11 +7,24 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>💾 CRUD Manager - NeonSQL</h1>
-            <p class="subtitle">Gestión de cuentas con PostgreSQL</p>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>💾 CRUD Manager - NeonSQL</h1>
+                    <p class="subtitle">Gestión de cuentas con PostgreSQL</p>
+                </div>
+                <div class="header-buttons">
+                    <button id="btnCredits" class="btn-header" aria-label="Créditos y tecnologías" title="Créditos y tecnologías">
+                        <span class="header-icon">ℹ️</span>
+                    </button>
+                    <button id="btnTheme" class="btn-header" aria-label="Cambiar tema" title="Cambiar tema">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
         </header>
 
         <!-- Info de Conexión -->
@@ -37,62 +50,154 @@
             </div>
         </section>
 
-        <!-- CRUD Panel -->
-        <section class="crud-section">
-            <h2>⚙️ Panel de Operaciones CRUD</h2>
-            
-            <!-- Crear -->
-            <div class="operation-card">
-                <h3>➕ Crear Cuenta</h3>
-                <div class="form-group">
-                    <input type="text" id="createId" placeholder="ID (UUID) - opcional, se genera automáticamente" class="input-field">
-                </div>
-                <div class="form-group">
-                    <input type="number" id="createBalance" placeholder="Balance inicial" class="input-field">
-                </div>
-                <button onclick="crearRegistro()" class="btn btn-primary">Crear Cuenta</button>
-            </div>
+        <!-- Main content: horizontal modules + large results -->
+        <section class="main-section">
+            <div class="main-grid">
+                <!-- Modules column -->
+                <div class="modules">
+                    <div class="module-tabs" role="tablist" aria-label="Operaciones CRUD">
+                        <button class="module-tab active" data-target="mod-crear" role="tab" aria-selected="true">➕ Crear</button>
+                        <button class="module-tab" data-target="mod-leer" role="tab" aria-selected="false">🔍 Leer</button>
+                        <button class="module-tab" data-target="mod-actualizar" role="tab" aria-selected="false">✏️ Actualizar</button>
+                        <button class="module-tab" data-target="mod-eliminar" role="tab" aria-selected="false">🗑️ Eliminar</button>
+                    </div>
 
-            <!-- Leer/Buscar -->
-            <div class="operation-card">
-                <h3>🔍 Buscar Cuentas</h3>
-                <div class="form-group">
-                    <input type="text" id="searchId" placeholder="ID de la cuenta (opcional)" class="input-field">
-                </div>
-                <button onclick="leerRegistros()" class="btn btn-info">Obtener Todas las Cuentas</button>
-                <button onclick="buscarPorId()" class="btn btn-info">Buscar por ID</button>
-            </div>
+                    <div class="module-panels">
+                        <!-- Crear -->
+                        <div id="mod-crear" class="module-panel active" role="tabpanel">
+                            <h3>➕ Crear Cuenta</h3>
+                            <div class="form-group">
+                                <input type="text" id="createId" placeholder="ID (UUID) - opcional, se genera automáticamente" class="input-field">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="createBalance" placeholder="Balance inicial" class="input-field">
+                            </div>
+                            <button id="btnCrear" class="btn btn-primary">Crear Cuenta</button>
+                        </div>
 
-            <!-- Actualizar -->
-            <div class="operation-card">
-                <h3>✏️ Actualizar Cuenta</h3>
-                <div class="form-group">
-                    <input type="text" id="updateId" placeholder="ID de la cuenta" class="input-field">
-                </div>
-                <div class="form-group">
-                    <input type="number" id="updateBalance" placeholder="Nuevo balance" class="input-field">
-                </div>
-                <button onclick="actualizarRegistro()" class="btn btn-warning">Actualizar</button>
-            </div>
+                        <!-- Leer/Buscar -->
+                        <div id="mod-leer" class="module-panel" role="tabpanel" aria-hidden="true">
+                            <h3>🔍 Buscar Cuentas</h3>
+                            <div class="form-group">
+                                <input type="text" id="searchId" placeholder="ID de la cuenta (opcional)" class="input-field">
+                            </div>
+                            <div class="btn-row">
+                                <button id="btnLeer" class="btn btn-info">Obtener Todas las Cuentas</button>
+                                <button id="btnBuscarId" class="btn btn-info">Buscar por ID</button>
+                            </div>
+                        </div>
 
-            <!-- Eliminar -->
-            <div class="operation-card">
-                <h3>🗑️ Eliminar Cuenta</h3>
-                <div class="form-group">
-                    <input type="text" id="deleteId" placeholder="ID de la cuenta" class="input-field">
-                </div>
-                <button onclick="eliminarRegistro()" class="btn btn-danger">Eliminar</button>
-            </div>
-        </section>
+                        <!-- Actualizar -->
+                        <div id="mod-actualizar" class="module-panel" role="tabpanel" aria-hidden="true">
+                            <h3>✏️ Actualizar Cuenta</h3>
+                            <div class="form-group">
+                                <input type="text" id="updateId" placeholder="ID de la cuenta" class="input-field">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="updateBalance" placeholder="Nuevo balance" class="input-field">
+                            </div>
+                            <button id="btnActualizar" class="btn btn-warning">Actualizar</button>
+                        </div>
 
-        <!-- Resultado -->
-        <section class="result-section">
-            <h2>📝 Resultado</h2>
-            <pre id="output" class="output-box"></pre>
+                        <!-- Eliminar -->
+                        <div id="mod-eliminar" class="module-panel" role="tabpanel" aria-hidden="true">
+                            <h3>🗑️ Eliminar Cuenta</h3>
+                            <div class="form-group">
+                                <input type="text" id="deleteId" placeholder="ID de la cuenta" class="input-field">
+                            </div>
+                            <button id="btnEliminar" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result column (prominent) -->
+                <div class="results">
+                    <h2>📝 Resultado</h2>
+                    <pre id="output" class="output-box highlight"></pre>
+                </div>
+            </div>
         </section>
 
         <!-- Toast Notifications -->
         <div id="toast" class="toast"></div>
+    </div>
+
+    <!-- Credits Modal -->
+    <div id="creditsModal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Cerrar">&times;</button>
+            <h2>💻 Créditos y Tecnologías</h2>
+            
+            <section class="credits-section">
+                <h3>Stack Tecnológico</h3>
+                <div class="tech-grid">
+                    <a href="https://neon.tech/docs" target="_blank" rel="noopener noreferrer" class="tech-item">
+                        <img src="https://neon.tech/favicon/favicon.png" alt="NeonSQL" class="tech-logo">
+                        <strong>NeonSQL</strong>
+                        <small>PostgreSQL Serverless</small>
+                    </a>
+                    <a href="https://nodejs.org/docs" target="_blank" rel="noopener noreferrer" class="tech-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tech-logo">
+                        <strong>Node.js</strong>
+                        <small>Runtime JavaScript</small>
+                    </a>
+                    <a href="https://expressjs.com" target="_blank" rel="noopener noreferrer" class="tech-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" class="tech-logo">
+                        <strong>Express.js</strong>
+                        <small>Framework Backend</small>
+                    </a>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer" class="tech-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="tech-logo">
+                        <strong>CSS3</strong>
+                        <small>Estilos Modernos</small>
+                    </a>
+                    <a href="https://node-postgres.com" target="_blank" rel="noopener noreferrer" class="tech-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="node-postgres" class="tech-logo">
+                        <strong>node-postgres</strong>
+                        <small>Driver PostgreSQL</small>
+                    </a>
+                    <a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer" class="tech-item">
+                        <img src="https://assets.vercel.com/image/upload/front/favicon/vercel/favicon.ico" alt="Vercel" class="tech-logo">
+                        <strong>Vercel</strong>
+                        <small>Deploy Serverless</small>
+                    </a>
+                </div>
+            </section>
+
+            <section class="credits-section">
+                <h3>Versión 1.0 - CockroachDB</h3>
+                <ul class="features-list">
+                    <li>🔹 Base de datos distribuida CockroachDB</li>
+                    <li>🔹 CRUD monolítico en un solo archivo</li>
+                    <li>🔹 Interfaz básica con estilos predeterminados</li>
+                    <li>🔹 Sin validaciones avanzadas</li>
+                    <li>🔹 Manejo básico de errores</li>
+                </ul>
+            </section>
+
+            <section class="credits-section">
+                <h3>Versión 2.0 - NeonSQL</h3>
+                <ul class="features-list">
+                    <li>✅ Migración completa a NeonSQL (PostgreSQL serverless)</li>
+                    <li>✅ Arquitectura MVC modular y escalable</li>
+                    <li>✅ Validaciones UUID e INT8 en cliente y servidor</li>
+                    <li>✅ Sistema de temas (claro/oscuro) con persistencia</li>
+                    <li>✅ Background animado con efecto bokeh en Canvas</li>
+                    <li>✅ Diseño responsive optimizado para móviles</li>
+                    <li>✅ API RESTful con middleware de errores centralizado</li>
+                    <li>✅ Connection pooling y prepared statements</li>
+                    <li>✅ Transiciones suaves en todos los elementos</li>
+                </ul>
+            </section>
+
+            <section class="credits-section">
+                <h3>Información del Proyecto</h3>
+                <p><strong>Versión Actual:</strong> v2.0.0</p>
+                <p><strong>Tipo:</strong> CRUD Manager con PostgreSQL Serverless</p>
+                <p class="credits-footer">Desarrollado en 2026</p>
+            </section>
+        </div>
     </div>
 
     <script src="script.js" defer></script>
