@@ -27,7 +27,7 @@ Aplicación CRUD rápida y moderna que utiliza **NeonSQL** (PostgreSQL serverles
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/tu-usuario/quick-neocrud.git
+git clone https://github.com/SaDaGoPia/Quick-NeoCRUD.git
 cd quick-neocrud
 ```
 
