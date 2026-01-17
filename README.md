@@ -2,6 +2,8 @@
 
 Aplicación CRUD rápida y moderna que utiliza **NeonSQL** (PostgreSQL serverless) como base de datos. Este proyecto demuestra una arquitectura profesional con validaciones robustas, manejo de errores centralizado, animaciones fluidas y una interfaz de usuario moderna y responsiva.
 
+![Quick-NeoCRUD Screenshot](./public/screenshot.png)
+
 ## 🚀 Características
 
 - ✅ **CRUD Completo**: Crear, Leer, Actualizar y Eliminar cuentas
