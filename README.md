@@ -1,6 +1,6 @@
-# 💾 CRUD Manager - NeonSQL
+# ⚡ Quick-NeoCRUD
 
-Aplicación CRUD refactorizada y modernizada que utiliza **NeonSQL** (PostgreSQL) como base de datos. Este proyecto demuestra una arquitectura profesional con validaciones robustas, manejo de errores centralizado y una interfaz de usuario moderna y responsiva.
+Aplicación CRUD rápida y moderna que utiliza **NeonSQL** (PostgreSQL serverless) como base de datos. Este proyecto demuestra una arquitectura profesional con validaciones robustas, manejo de errores centralizado, animaciones fluidas y una interfaz de usuario moderna y responsiva.
 
 ## 🚀 Características
 
@@ -25,8 +25,8 @@ Aplicación CRUD refactorizada y modernizada que utiliza **NeonSQL** (PostgreSQL
 
 ### 1. Clonar el repositorio
 ```bash
-git clone <tu-repositorio>
-cd Deploy_Vercel_CockroachDB
+git clone https://github.com/tu-usuario/quick-neocrud.git
+cd quick-neocrud
 ```
 
 ### 2. Instalar dependencias

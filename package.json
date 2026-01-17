@@ -1,7 +1,7 @@
 {
-  "name": "crud-neonsql-app",
+  "name": "quick-neocrud",
   "version": "2.0.0",
-  "description": "CRUD app refactorizado con NeonSQL (PostgreSQL). Migración desde CockroachDB con arquitectura modular.",
+  "description": "Quick-NeoCRUD - Gestión rápida de cuentas con NeonSQL (PostgreSQL). Aplicación CRUD moderna con arquitectura modular y UI atractiva.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
